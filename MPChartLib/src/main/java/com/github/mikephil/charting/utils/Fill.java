@@ -230,7 +230,19 @@ public class Fill
 
                 paint.setShader(gradient);
 
-                c.drawRect(left, top, right, bottom, paint);
+//                c.drawRoundRect(new RectF(left, top, right, bottom), 50, 50, paint);
+                float[] corners = new float[]{
+                        80, 80,        // Top left radius in px
+                        80, 80,        // Top right radius in px
+                        0, 0,          // Bottom right radius in px
+                        0, 0           // Bottom left radius in px
+                };
+
+                final Path path = new Path();
+                path.addRoundRect(new RectF(left, top, right, bottom), corners, Path.Direction.CW);
+                c.drawPath(path, paint);
+
+//                c.drawRect(left, top, right, bottom, paint);
             }
             break;
 
